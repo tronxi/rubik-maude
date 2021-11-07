@@ -1,0 +1,152 @@
+fmod CARA is
+
+    sorts Color Cara .
+
+    ops blanco amarillo verde azul naranja rojo : -> Color [ctor] .
+    op [ _ , _  , _ , _ ] : Color Color Color Color -> Cara [ctor].
+
+endfm
+
+mod CUBE is
+
+    pr CARA .
+    sort Cube .
+
+    var C : Cube .
+
+    vars F : Cara .
+
+    vars 00 01 02 03 10 11 12 13 20 21 22 23 30 31 32 33 40 41 42 43 50 51 52 53 : Color .
+
+    op ( _ , _ , _ , _ , _ , _) : Cara Cara Cara Cara Cara Cara -> Cube [ctor] .
+
+    op r : Cube -> Cube .
+    eq r((F , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+        (F , [10, 21, 12, 23], [20, 31, 22, 33], [30, 52, 32, 50], [42, 40, 43, 41], [13, 51, 11, 53]) .
+
+    op r2 : Cube -> Cube .
+    eq r2(C) = r(r(C)) .
+
+    op r' : Cube -> Cube .
+    eq r'((F , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+        (F , [10, 52, 12, 50], [20, 11, 22, 13], [30, 21, 32, 23], [41, 43, 40, 42], [33, 51, 31, 53]) .
+
+    op l : Cube -> Cube .
+    eq l(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], F, [50, 51, 52, 53]))
+        =
+       ([02, 00, 03, 01] , [53, 11, 51, 13], [10, 21, 12, 23], [20, 31, 22, 33], F, [50, 32, 52, 30]) .
+    
+    op l2 : Cube -> Cube .
+    eq l2(C) = l(l(C)) .
+
+    op l' : Cube -> Cube .
+    eq l'(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], F, [50, 51, 52, 53]))
+        =
+       ([01, 03, 00, 02] , [20, 11, 22, 13], [30, 21, 32, 23], [53, 31, 51, 33], F, [50, 12, 52, 10]) .
+
+    
+    op u : Cube -> Cube .
+    eq u(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], F, [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([20, 21, 02, 03] , [12, 10, 13, 11], [40, 41, 22, 23], F, [50, 51, 42, 43], [00, 01, 52, 53]) .
+
+    op u2 : Cube -> Cube .
+    eq u2(C) = u(u(C)) .
+
+    op u' : Cube -> Cube .
+    eq u'(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], F, [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([50, 51, 02, 03] , [11, 13, 10, 12], [00, 01, 22, 23], F, [20, 21, 42, 43], [40, 41, 52, 53]) .
+
+    op d : Cube -> Cube .
+    eq d(([00, 01, 02, 03] , F, [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([00, 01, 52, 53] , F, [20, 21, 02, 03], [32, 30, 33, 31], [40, 41, 22, 23], [50, 51, 42, 43]) .
+
+    op d2 : Cube -> Cube .
+    eq d2(C) = d(d(C)) .
+
+    op d' : Cube -> Cube .
+    eq d'(([00, 01, 02, 03] , F, [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([00, 01, 22, 23] , F, [20, 21, 42, 43], [31, 33, 30, 32], [40, 41, 52, 53], [50, 51, 02, 03]) .
+
+    op f : Cube -> Cube .
+    eq f(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], F))
+        =
+       ([00, 30, 02, 31] , [10, 11, 03, 01], [22, 20, 23, 21], [42, 40, 32, 33], [12, 41, 13, 43], F) .
+    op f2 : Cube -> Cube .
+    eq f2(C) = f(f(C)) .
+
+    op f' : Cube -> Cube .
+    eq f'(([00, 01, 02, 03] , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], F))
+        =
+       ([00, 13, 02, 12] , [10, 11, 40, 42], [21, 23, 20, 22], [01, 03, 32, 33], [31, 41, 30, 43], F) .
+
+    op b : Cube -> Cube .
+    eq b(([00, 01, 02, 03] , [10, 11, 12, 13], F, [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([11, 01, 10, 03] , [41, 43, 12, 13], F, [30, 31, 00, 02], [40, 33, 42, 32], [52, 50, 53, 51]) .
+    op b2 : Cube -> Cube .
+    eq b2(C) = b(b(C)) .
+
+    op b' : Cube -> Cube .
+    eq b'(([00, 01, 02, 03] , [10, 11, 12, 13], F, [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
+        =
+       ([32, 01, 33, 03] , [02, 00, 12, 13], F, [30, 31, 43, 41], [40, 10, 42, 11], [51, 53, 50, 52]) .
+
+    rl [r] : C => r(C) .
+    rl [r2] : C => r2(C) .
+    rl [r'] : C => r'(C) .
+    rl [l] : C => l(C) .
+    rl [l2] : C => l2(C) .
+    rl [l'] : C => l'(C) .
+    rl [u] : C => u(C) .
+    rl [u2] : C => u2(C) .
+    rl [u'] : C => u'(C) .
+    rl [d] : C => d(C) .
+    rl [d2] : C => d2(C) .
+    rl [d'] : C => d'(C) .
+    rl [f] : C => f(C) .
+    rl [f2] : C => f2(C) .
+    rl [f'] : C => f'(C) .
+    rl [b] : C => b(C) .
+    rl [b2] : C => b2(C) .
+    rl [b'] : C => b'(C) .
+endm
+
+mod TEST is
+    pr CUBE .
+
+    --- creamos las caras
+    op caraNaranja : -> Cara .
+    eq caraNaranja = [ naranja, naranja, naranja, naranja] .
+
+    op caraBlanca : -> Cara .
+    eq caraBlanca = [ blanco, blanco, blanco, blanco ] .
+
+    op caraVerde : -> Cara .
+    eq caraVerde = [ verde , verde, verde, verde] .
+
+    op caraAmarilla : -> Cara .
+    eq caraAmarilla = [ amarillo, amarillo , amarillo , amarillo] .
+
+    op caraRoja : -> Cara .
+    eq caraRoja = [ rojo, rojo, rojo, rojo] .
+
+    op caraAzul : -> Cara .
+    eq caraAzul = [ azul , azul, azul, azul] .
+
+    --- creamos los cubos
+    op solvedCube : -> Cube .
+    eq solvedCube = ( caraNaranja, caraBlanca , caraVerde , caraAmarilla, caraRoja, caraAzul) .
+
+    op unsolvedCube : -> Cube .
+    eq unsolvedCube = r(u2(r'(u(r(u2(f2(r2(u'(r'(u(solvedCube))))))))))) .
+
+
+endm
+--- red unsolvedCube .
+search[1] unsolvedCube =>* C:Cube s.t. C:Cube == solvedCube .
