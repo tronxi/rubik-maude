@@ -144,7 +144,7 @@ mod TEST is
     eq solvedCube = ( caraNaranja, caraBlanca , caraVerde , caraAmarilla, caraRoja, caraAzul) .
 
     op unsolvedCube : -> Cube .
-    eq unsolvedCube = r(u2(r'(u(r(u2(f2(r2(u'(r'(u(solvedCube))))))))))) .
+    eq unsolvedCube = r'(f2(r'(u'(r'(u'(r(u'(r(u2(r'(solvedCube))))))))))) .
 
 
 endm
