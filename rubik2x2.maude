@@ -2,13 +2,13 @@ mod CUBE is
 
     sorts Color Face Cube .
 
-    var C : Cube .
-    vars F : Face .
-    vars 00 01 02 03 10 11 12 13 20 21 22 23 30 31 32 33 40 41 42 43 50 51 52 53 : Color .
-
     ops white yellow green blue orange red : -> Color [ctor] .
     op [ _ , _  , _ , _ ] : Color Color Color Color -> Face [ctor].
     op ( _ , _ , _ , _ , _ , _) : Face Face Face Face Face Face -> Cube [ctor] .
+
+    var C : Cube .
+    vars F : Face .
+    vars 00 01 02 03 10 11 12 13 20 21 22 23 30 31 32 33 40 41 42 43 50 51 52 53 : Color .
 
     op r : Cube -> Cube .
     eq r((F , [10, 11, 12, 13], [20, 21, 22, 23], [30, 31, 32, 33], [40, 41, 42, 43], [50, 51, 52, 53]))
