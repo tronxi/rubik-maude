@@ -1,22 +1,13 @@
-fmod FACE is
-
-    sorts Color Face .
-
-    ops white yellow green blue orange red : -> Color [ctor] .
-    op [ _ , _  , _ , _ ] : Color Color Color Color -> Face [ctor].
-
-endfm
-
 mod CUBE is
 
-    pr FACE .
-    
-    sort Cube .
+    sorts Color Face Cube .
 
     var C : Cube .
     vars F : Face .
     vars 00 01 02 03 10 11 12 13 20 21 22 23 30 31 32 33 40 41 42 43 50 51 52 53 : Color .
 
+    ops white yellow green blue orange red : -> Color [ctor] .
+    op [ _ , _  , _ , _ ] : Color Color Color Color -> Face [ctor].
     op ( _ , _ , _ , _ , _ , _) : Face Face Face Face Face Face -> Cube [ctor] .
 
     op r : Cube -> Cube .
@@ -144,7 +135,7 @@ mod TEST is
     --- eq unsolvedCube = r(u2(r'(u(r(u2(f2(r2(u'(r'(u(solvedCube))))))))))) .
     eq unsolvedCube = r'(f2(r'(u'(r'(u'(r(u'(r(u2(r'(solvedCube))))))))))) .
     --- eq unsolvedCube = u2(f'(u'(f(r2(u'(r2(f(u2(r'(u(solvedCube))))))))))) .
-    --- eq unsolvedCube = u2(solvedCube) .
+    --- eq unsolvedCube = r2(solvedCube) .
 endm
 
 red unsolvedCube .
