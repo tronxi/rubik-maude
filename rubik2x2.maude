@@ -95,24 +95,24 @@ mod CUBE is
         =
        ([32, 01, 33, 03] , [02, 00, 12, 13], F, [30, 31, 43, 41], [40, 10, 42, 11], [51, 53, 50, 52]) .
 
-    rl [r] : C => r(C) .
-    rl [r2] : C => r2(C) .
-    rl [r'] : C => r'(C) .
-    rl [l] : C => l(C) .
-    rl [l2] : C => l2(C) .
-    rl [l'] : C => l'(C) .
-    rl [u] : C => u(C) .
-    rl [u2] : C => u2(C) .
-    rl [u'] : C => u'(C) .
-    rl [d] : C => d(C) .
-    rl [d2] : C => d2(C) .
-    rl [d'] : C => d'(C) .
-    rl [f] : C => f(C) .
-    rl [f2] : C => f2(C) .
-    rl [f'] : C => f'(C) .
-    rl [b] : C => b(C) .
-    rl [b2] : C => b2(C) .
-    rl [b'] : C => b'(C) .
+    rl [r] : C => r(C) [print "r"] .
+    rl [r2] : C => r2(C) [print "r2"] .
+    rl [r'] : C => r'(C) [print "r'"] .
+    rl [l] : C => l(C) [print "l"] .
+    rl [l2] : C => l2(C) [print "l2"] .
+    rl [l'] : C => l'(C) [print "l'"] .
+    rl [u] : C => u(C) [print "u"] .
+    rl [u2] : C => u2(C) [print "u2"] .
+    rl [u'] : C => u'(C) [print "u'"] .
+    rl [d] : C => d(C) [print "d"] .
+    rl [d2] : C => d2(C) [print "d2"] .
+    rl [d'] : C => d'(C) [print "d'"] .
+    rl [f] : C => f(C) [print "f"] .
+    rl [f2] : C => f2(C) [print "f2"] .
+    rl [f'] : C => f'(C) [print "f'"] .
+    rl [b] : C => b(C) [print "b"] .
+    rl [b2] : C => b2(C) [print "b2"] .
+    rl [b'] : C => b'(C) [print "b'"] .
 endm
 
 mod TEST is
@@ -145,7 +145,7 @@ mod TEST is
     --- eq unsolvedCube = u2(f'(u'(f(r2(u'(r2(f(u2(r'(u(solvedCube))))))))))) .
     --- eq unsolvedCube = r2(solvedCube) .
 endm
-
+set print attribute on .
 red unsolvedCube .
 search[1, 11] unsolvedCube =>* C:Cube s.t. C:Cube == solvedCube .
 q
